@@ -1,19 +1,21 @@
 package com.datnht.circleapp
 
+import android.animation.AnimatorSet
 import android.content.Context
+import android.content.res.Resources
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.opengl.GLU
 import android.util.DisplayMetrics
 import android.util.Log
 import android.util.SparseArray
 import android.view.MotionEvent
+import android.view.animation.AnimationSet
 import android.view.animation.OvershootInterpolator
 import androidx.core.content.ContextCompat
+import com.datnht.circleapp.`object`.*
 import org.rajawali3d.Object3D
-import org.rajawali3d.animation.Animation
-import org.rajawali3d.animation.AnimationGroup
-import org.rajawali3d.animation.IAnimationListener
-import org.rajawali3d.animation.SplineTranslateAnimation3D
+import org.rajawali3d.animation.*
 import org.rajawali3d.curves.CubicBezierCurve3D
 import org.rajawali3d.materials.Material
 import org.rajawali3d.materials.methods.DiffuseMethod
@@ -25,13 +27,36 @@ import org.rajawali3d.renderer.Renderer
 import org.rajawali3d.util.ObjectColorPicker
 import org.rajawali3d.util.OnObjectPickedListener
 import java.util.*
+import kotlin.collections.HashMap
 
 class FirePushRender constructor(context: Context) : Renderer(context), OnObjectPickedListener {
+    companion object {
+        private const val TAG = "FIRE_RENDERER"
+        private const val BOTTOM_RAJAWALY_Y_COR = -1.5
+        val DEFAULT_CONFIG = Config(5f, 2f, 1f)
+
+    }
 
     private var config = DEFAULT_CONFIG
 
     private val cache = SparseArray<Material>()
     private val random = Random()
+    private var mPicker: ObjectColorPicker? = null
+    private var mSelectedObject: Object3D? = null
+    private val objectIDs = mutableListOf(
+        BaseObject3D.ITEM_PLANE_LEFT_ID,
+        BaseObject3D.ITEM_PLANE_RIGHT_ID,
+        BaseObject3D.ITEM_REINDEER_ID,
+        BaseObject3D.ITEM_REINDEER_INTREE_ID,
+        BaseObject3D.ITEM_SANTA_ID,
+        BaseObject3D.ITEM_SNOWMAN_INTREE_ID,
+        BaseObject3D.ITEM_SNOWMAN_LEFT_ID,
+        BaseObject3D.ITEM_SNOWMAN_RIGHT_ID,
+        BaseObject3D.ITEM_TREE_ID
+    )
+    private val matMap = HashMap<Int, Material>()
+    private val objectMap = HashMap<Int, BaseObject3D>()
+    var onCatchItemListener: OnCatchItemListener? = null
 
     init {
         mContext = context
@@ -40,95 +65,101 @@ class FirePushRender constructor(context: Context) : Renderer(context), OnObject
 
 
     fun emitItem(
-        bitmap: Bitmap,
-        itemType: ItemType,
         width: Int,
         height: Int,
-        id: Int,
         yMax: Float,
-        startPoint: ArrayList<Float>,
-        endPoint: ArrayList<Float>,
         flyEndCallBack: EndFlyAnimation? = null
     ) {
-        if (startPoint.size < 2 || endPoint.size < 2) return
 
-        val mat = cache[id] ?: initMaterial(bitmap, id)
-        mat.textureList[0].influence = 1f
-        val randSign = if (random.nextBoolean()) 1 else -1
+//        val w = config.sizeCoeff
+//
+//        val dimenW: Float
+//        val dimenH: Float
+//        if (width >= height) {
+//            dimenW = w
+//            dimenH = height.toFloat() / width.toFloat() * dimenW
+//        } else {
+//            dimenH = w
+//            dimenW = width.toFloat() / height.toFloat() * dimenH
+//        }
 
-        val startVector =
-            screenToWorld(startPoint[0], startPoint[1], viewportWidth, viewportHeight).apply {
-                z = 1.0
-            }
-        val endVector =
-            screenToWorld(endPoint[0], endPoint[1], viewportWidth, viewportHeight).apply {
 
-            }
+        var santas = objectMap[BaseObject3D.ITEM_SANTA_ID]
+        var santaPoint = getPointSprite(BaseObject3D.ITEM_SANTA_ID)
 
-        val cubicBezierCurve3D = get3DCoor(itemType, startPoint, endPoint)
-//        val cubicBezierCurve3D = CubicBezierCurve3D(
-//            startVector,
-//            startVector,
-//            Vector3(
-//                (startVector.x + endVector.x) * 0.5,
-//                (startVector.y + endVector.y) * 0.5,
-//                2.0
-//            ),
-//            endVector.apply {
-//                z = 2.5
-//            }
-//        )
+        var planeLeft = objectMap[BaseObject3D.ITEM_PLANE_LEFT_ID]
+        var planeLeftPoint = getPointSprite(BaseObject3D.ITEM_PLANE_LEFT_ID)
 
-        val w = config.sizeCoeff
+        var planeRight = objectMap[BaseObject3D.ITEM_PLANE_RIGHT_ID]
+        var planeRightPoint = getPointSprite(BaseObject3D.ITEM_PLANE_RIGHT_ID)
 
-        val dimenW: Float
-        val dimenH: Float
-        if (width >= height) {
-            dimenW = w
-            dimenH = height.toFloat() / width.toFloat() * dimenW
-        } else {
-            dimenH = w
-            dimenW = width.toFloat() / height.toFloat() * dimenH
-        }
+        var reindeer = objectMap[BaseObject3D.ITEM_REINDEER_ID]
+        var reindeerPoint = getPointSprite(BaseObject3D.ITEM_REINDEER_ID)
 
-        val pointSprite = PointSprite(dimenW, dimenH).apply {
-            material = mat
-            isTransparent = true
-            this.name = itemType.name
-        }
+        var reindeerInTree = objectMap[BaseObject3D.ITEM_REINDEER_INTREE_ID]
+        var reindeerInTreePoint = getPointSprite(BaseObject3D.ITEM_REINDEER_INTREE_ID)
 
-        mPicker?.registerObject(pointSprite)
-        currentScene.addChild(pointSprite)
+        var snowManInTree = objectMap[BaseObject3D.ITEM_SNOWMAN_INTREE_ID]
+        var snowManInTreePoint = getPointSprite(BaseObject3D.ITEM_SNOWMAN_INTREE_ID)
+
+        var snowManLeft = objectMap[BaseObject3D.ITEM_SNOWMAN_LEFT_ID]
+        var snowManLeftPoint = getPointSprite(BaseObject3D.ITEM_SNOWMAN_LEFT_ID)
+
+        var snowManRight = objectMap[BaseObject3D.ITEM_SNOWMAN_RIGHT_ID]
+        var snowManRightPoint = getPointSprite(BaseObject3D.ITEM_SNOWMAN_RIGHT_ID)
+
+        currentScene.addChild(snowManInTreePoint.apply { isVisible = false })
+        currentScene.addChild(reindeerInTreePoint.apply { isVisible = false })
+        currentScene.addChild(santaPoint.apply { isVisible = false })
+        currentScene.addChild(planeLeftPoint.apply { isVisible = false })
+        currentScene.addChild(planeRightPoint.apply { isVisible = false })
+        currentScene.addChild(reindeerPoint.apply { isVisible = false })
+        currentScene.addChild(snowManLeftPoint.apply { isVisible = false })
+        currentScene.addChild(snowManRightPoint.apply { isVisible = false })
 
         AnimationGroup().apply {
-//            addAnimation(ScaleAnimation3D(Vector3(0.3, 0.3, 0.0)).apply {
-//                durationMilliseconds = (randF * 5000.0f * config.floatingTimeCoeff - 100).toLong()
-//                transformable3D = pointSprite
-//            })
 
-            addAnimation(SplineTranslateAnimation3D(cubicBezierCurve3D).apply {
-                durationMilliseconds = config.floatingTimeCoeff.toLong()
-                transformable3D = pointSprite
-                interpolator = OvershootInterpolator()
-                registerListener(object : IAnimationListener {
-                    override fun onAnimationRepeat(animation: Animation?) = Unit
+            addAnimation(
+                santas?.getAnimation(santaPoint, {
+                    currentScene.removeChild(santaPoint)
+                }, get3DCoor(santas.itemType, santas.startPoint, santas.endPoint))
+            )
 
-                    override fun onAnimationEnd(animation: Animation?) {
-                        currentScene.removeChild(pointSprite)
-                        animation?.unregisterListener(this)
-                        flyEndCallBack?.onEndFly()
-                    }
-
-                    override fun onAnimationStart(animation: Animation?) = Unit
-
-                    override fun onAnimationUpdate(
-                        animation: Animation?,
-                        interpolatedTime: Double
-                    ) {
-
-                    }
-                })
-            })
+//            addAnimation(
+//                getPlaneAnimation(
+//                    planeLeft?.getAnimation(planeLeftPoint, {
+//                        currentScene.removeChild(planeLeftPoint)
+//                    }, get3DCoor(planeLeft.itemType, planeLeft.startPoint, planeLeft.endPoint)),
+//                    planeRight?.getAnimation(planeRightPoint, {
+//                        currentScene.removeChild(planeRightPoint)
+//                    }, get3DCoor(planeRight.itemType, planeRight.startPoint, planeRight.endPoint))
+//                )
+//            )
+//
+//            addAnimation(
+//                getReindeerAnimation(
+//                    reindeer?.getAnimation(reindeerPoint, {
+//                        currentScene.removeChild(reindeerPoint)
+//                    }, get3DCoor(reindeer.itemType, reindeer.startPoint, reindeer.endPoint)),
+//                    reindeerInTree?.getAnimation(reindeerInTreePoint, {
+//                        currentScene.removeChild(reindeerInTreePoint)
+//                    }, get3DCoor(reindeerInTree.itemType, reindeerInTree.startPoint, reindeerInTree.endPoint))
+//                )
+//            )
+//
+            addAnimation(
+                getSnowManAnimation(
+                    snowManInTree?.getAnimation(snowManInTreePoint, {
+                        currentScene.removeChild(snowManInTreePoint)
+                    }, get3DCoor(snowManInTree.itemType, snowManInTree.startPoint, snowManInTree.endPoint)),
+                    snowManLeft?.getAnimation(snowManLeftPoint, {
+                        currentScene.removeChild(snowManLeftPoint)
+                    }, get3DCoor(snowManLeft.itemType, snowManLeft.startPoint, snowManLeft.endPoint)),
+                    snowManRight?.getAnimation(snowManRightPoint, {
+                        currentScene.removeChild(snowManRightPoint)
+                    }, get3DCoor(snowManRight.itemType, snowManRight.startPoint, snowManRight.endPoint))
+                )
+            )
 
             /*     // Use this anim for make transparent effect
                  addAnimation(ColorAnimation3D(
@@ -232,26 +263,49 @@ class FirePushRender constructor(context: Context) : Renderer(context), OnObject
         val endX = convertYCor2dTo3d(startPoint[1].toDouble())
         val startY = convertXCor2dTo3d(endPoint[0].toDouble())
         val endY = convertYCor2dTo3d(endPoint[1].toDouble())
+
+        var z1 = 0.0
+        var z2 = 0.0
+        var z3 = 0.0
+
+        when (itemType) {
+            ItemType.LEFT_PLANE, ItemType.RIGHT_PLANE -> {
+                z1 = 1.0
+                z2 = 2.0
+                z3 = 2.5
+            }
+            ItemType.REINDEER -> {
+                z3 = 0.0
+                z2 = 2.0
+                z1 = 2.5
+            }
+            ItemType.REINDEER_IN_TREE -> {}
+            ItemType.SANTA -> {}
+            ItemType.SNOWMAN_INTREE -> {}
+            ItemType.SNOWMAN_RIGHT -> {}
+            ItemType.SNOWMAN_LEFT -> {}
+            else -> {}
+        }
         return CubicBezierCurve3D(
             Vector3(
                 startX,
                 endX,
-                1.0
+                z1
             ),
             Vector3(
                 convertXCor2dTo3d(startPoint[0].toDouble()),
                 convertYCor2dTo3d(startPoint[1].toDouble()),
-                1.0
+                z1
             ),
             Vector3(
                 (startX + startY) * 0.5,
                 (endX + endY) * 0.5,
-                2.0
+                z2
             ),
             Vector3(
                 startY,
                 endY,
-                2.5
+                z3
             )
         )
     }
@@ -260,6 +314,15 @@ class FirePushRender constructor(context: Context) : Renderer(context), OnObject
         currentCamera.z = 4.2
         mPicker = ObjectColorPicker(this)
         mPicker?.setOnObjectPickedListener(this)
+
+        objectIDs.forEach {
+            var obj = getBaseItemObject(it)
+            objectMap[it] = obj
+            val mat = cache[it] ?: initMaterial(obj.getBitmap(config.resource!!), it)
+            mat.textureList[0].influence = 1f
+            matMap[it] = mat
+        }
+        addTreeItem()
     }
 
     override fun onOffsetsChanged(
@@ -270,67 +333,113 @@ class FirePushRender constructor(context: Context) : Renderer(context), OnObject
         xPixelOffset: Int,
         yPixelOffset: Int
     ) = Unit
-    private var mPicker: ObjectColorPicker? = null
-    private var mSelectedObject: Object3D? = null
 
-    fun getObjectAt(x: Float, y: Float) = mPicker?.getObjectAt(x, y)
+    fun getObjectAt(x: Float, y: Float) {
+        mPicker?.getObjectAt(x, y)
+    }
 
     override fun onTouchEvent(motionEvent: MotionEvent) {
-
-
         when (motionEvent.action) {
             MotionEvent.ACTION_DOWN -> {
-//                Log.d("asdasd", "x = ${motionEvent.x}; y = ${motionEvent.y} num = ${currentScene.numChildren}")
-                val x = getObjectAt(motionEvent.getX(), motionEvent.getY())
-                val child = this.currentScene.childrenCopy
-//                for (i in 0 until currentScene.numChildren) {
-//                    val child = this.currentScene.childrenCopy
-//                    val boundingSphere: BoundingSphere = child.getGeometry().getBoundingSphere()
-//                    boundingSphere.transform(child.getModelMatrix())
-//                    val position: Vector3 = boundingSphere.getPosition()
-//                    val radius: Double = boundingSphere.getRadius()
-//                    val hitPoint = Vector3()
-//                    val found: Boolean =
-//                        Intersector.intersectRaySphere(rayStart, rayEnd, position, radius, hitPoint)
-//                    if (found) {
-//                        Log.d(getLocalClassName(), "contact at $hitPoint")
-//                    }
-//                }
-//                start.setX(motionEvent.x / viewportWidth.toDouble())
-//                start.setY(motionEvent.y / viewportHeight.toDouble())
+                getObjectAt(motionEvent.getX(), motionEvent.getY())
             }
         }
+    }
+
+    fun addTreeItem() {
+        var mat: Material? = null
+        if (cache[BaseObject3D.ITEM_TREE_ID] == null) {
+            val bitmap = BitmapFactory.decodeResource(
+                config.resource,
+                R.drawable.tree
+            )
+            mat = initMaterial(bitmap, BaseObject3D.ITEM_TREE_ID)
+            cache.put(BaseObject3D.ITEM_TREE_ID, mat)
+        } else {
+            mat = cache[BaseObject3D.ITEM_TREE_ID]
+        }
+
+        val pointSprite = PointSprite(1f, 1f).apply {
+            material = mat
+            this.name = ItemType.TREE.name
+            this.position = Vector3(
+                convertXCor2dTo3d(200.0),
+                convertYCor2dTo3d(1800.0),
+                0.0
+            )
+        }
+        currentScene.addChild(pointSprite)
+    }
+
+    fun getBaseItemObject(id: Int): BaseObject3D {
+        val displayMetrics = DisplayMetrics()
+        (context as? MainActivity)?.windowManager?.defaultDisplay?.getMetrics(displayMetrics)
+        return when (id) {
+            BaseObject3D.ITEM_PLANE_LEFT_ID -> PlaneLeft(displayMetrics)
+            BaseObject3D.ITEM_PLANE_RIGHT_ID -> PlaneRight(displayMetrics)
+            BaseObject3D.ITEM_SANTA_ID -> Santas(displayMetrics)
+            BaseObject3D.ITEM_SNOWMAN_RIGHT_ID -> SnowManRight(displayMetrics)
+            BaseObject3D.ITEM_SNOWMAN_LEFT_ID -> SnowManLeft(displayMetrics)
+            BaseObject3D.ITEM_SNOWMAN_INTREE_ID -> SnowManInTree(displayMetrics)
+            BaseObject3D.ITEM_REINDEER_ID -> Reindeer(displayMetrics)
+            BaseObject3D.ITEM_REINDEER_INTREE_ID -> ReindeerInTree(displayMetrics)
+            else -> Tree()
+        }
+    }
+
+    fun getPointSprite(id: Int): PointSprite {
+        val pointSprite = PointSprite(config.sizeCoeff, config.sizeCoeff).apply {
+            material = matMap[id]
+            isTransparent = false
+            this.name = getBaseItemObject(id).itemType.name
+        }
+
+        if (id != BaseObject3D.ITEM_SANTA_ID && id != BaseObject3D.ITEM_TREE_ID) {
+            mPicker?.registerObject(pointSprite)
+        }
+
+        return pointSprite
     }
 
     data class Config(
         val xMax: Float,
         val floatingTimeCoeff: Float,
         val sizeCoeff: Float,
+        val resource: Resources? = null,
         val displayMetrics: DisplayMetrics? = null
     )
-
-    companion object {
-        private const val TAG = "FIRE_RENDERER"
-        private const val BOTTOM_RAJAWALY_Y_COR = -1.5
-        val DEFAULT_CONFIG = Config(5f, 2f, 1f)
-    }
 
     interface EndFlyAnimation {
         fun onEndFly()
     }
 
-    override fun onNoObjectPicked() {
+    interface OnCatchItemListener {
+        fun onCatch(itemType: ItemType)
+    }
 
+    override fun onNoObjectPicked() {
     }
 
     override fun onObjectPicked(`object`: Object3D) {
         mSelectedObject = `object`
         mPicker?.unregisterObject(`object`)
         currentScene.removeChild(`object`)
-        Log.d("asdasd", "chon dung plane ${mSelectedObject?.name}")
+        onCatchItemListener?.onCatch(convertNameToItemType(`object`.name))
+    }
+
+    fun convertNameToItemType(name: String) = when(name) {
+        ItemType.LEFT_PLANE.name -> ItemType.LEFT_PLANE
+        ItemType.RIGHT_PLANE.name -> ItemType.RIGHT_PLANE
+        ItemType.SANTA.name -> ItemType.SANTA
+        ItemType.REINDEER_IN_TREE.name -> ItemType.REINDEER_IN_TREE
+        ItemType.REINDEER.name -> ItemType.REINDEER
+        ItemType.SNOWMAN_LEFT.name -> ItemType.SNOWMAN_LEFT
+        ItemType.SNOWMAN_RIGHT.name -> ItemType.SNOWMAN_RIGHT
+        ItemType.SNOWMAN_INTREE.name -> ItemType.SNOWMAN_INTREE
+        else -> ItemType.TREE
     }
 }
 
 enum class ItemType {
-    LEFT_PLANE, RIGHT_PLANE, SANTA
+    LEFT_PLANE, RIGHT_PLANE, SANTA, TREE, REINDEER, REINDEER_IN_TREE, SNOWMAN_LEFT, SNOWMAN_RIGHT, SNOWMAN_INTREE
 }

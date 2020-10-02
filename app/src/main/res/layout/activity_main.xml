@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg"
     tools:context=".MainActivity">
 
     <com.datnht.circleapp.FirePushView
@@ -17,6 +18,10 @@
         app:layout_constraintTop_toTopOf="parent"
         app:size_coeff="0.5"
         app:x_max="1" />
+
+    <com.datnht.circleapp.snowview.SnowView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
     <Button
         android:id="@+id/btn_fire"

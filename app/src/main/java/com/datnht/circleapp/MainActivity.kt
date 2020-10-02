@@ -3,16 +3,14 @@ package com.datnht.circleapp
 import android.graphics.Point
 import android.os.Bundle
 import android.os.Handler
-import android.view.MotionEvent
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.datnht.circleapp.`object`.BaseObject3D.Companion.ITEM_PLANE_LEFT_ID
+import com.datnht.circleapp.`object`.BaseObject3D.Companion.ITEM_PLANE_RIGHT_ID
 import kotlinx.android.synthetic.main.activity_main.*
 
 
-class MainActivity : AppCompatActivity() {
-    companion object {
-        const val ITEM_PLANE_1_PUSH_ID = 1;
-        const val ITEM_PLANE_2_PUSH_ID = 2;
-    }
+class MainActivity : AppCompatActivity(), FirePushRender.OnCatchItemListener {
 
     /**
      * Get main thread for update ui
@@ -29,6 +27,12 @@ class MainActivity : AppCompatActivity() {
     private val localFreeBoostRunner: Runnable by lazy {
         Runnable {
             emitPlane2Animation();
+        }
+    }
+
+    private val catchItemRunner: Runnable by lazy {
+        Runnable {
+            Toast.makeText(this@MainActivity, "catch ", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -50,6 +54,7 @@ class MainActivity : AppCompatActivity() {
         btn_fire?.setOnClickListener {
             emitPlane1Animation();
         }
+        fire_push_view?.setOnCatchItemListener(this)
     }
 
     fun clearView() {
@@ -64,7 +69,7 @@ class MainActivity : AppCompatActivity() {
         val height: Int = size.y
 
         fire_push_view?.playAnimation(
-            ITEM_PLANE_1_PUSH_ID,
+            ITEM_PLANE_LEFT_ID,
             arrayListOf(width.toFloat() + 200f, 300f),
             arrayListOf(
                 -100f, 1500f
@@ -82,12 +87,18 @@ class MainActivity : AppCompatActivity() {
         val height: Int = size.y
 
         fire_push_view?.playAnimation(
-            ITEM_PLANE_2_PUSH_ID,
+            ITEM_PLANE_RIGHT_ID,
             arrayListOf(-100f, 300f),
             arrayListOf(
                 width.toFloat() + 200f, 1500f
             ),
             itemType = ItemType.LEFT_PLANE
         )
+    }
+
+    override fun onCatch(itemType: ItemType) {
+        mainHandler?.run {
+            post(catchItemRunner)
+        }
     }
 }

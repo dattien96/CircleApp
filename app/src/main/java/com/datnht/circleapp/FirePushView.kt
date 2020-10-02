@@ -6,7 +6,17 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.PixelFormat
 import android.util.AttributeSet
+import android.util.DisplayMetrics
 import android.view.MotionEvent
+import com.datnht.circleapp.`object`.*
+import com.datnht.circleapp.`object`.BaseObject3D.Companion.ITEM_PLANE_LEFT_ID
+import com.datnht.circleapp.`object`.BaseObject3D.Companion.ITEM_PLANE_RIGHT_ID
+import com.datnht.circleapp.`object`.BaseObject3D.Companion.ITEM_REINDEER_ID
+import com.datnht.circleapp.`object`.BaseObject3D.Companion.ITEM_REINDEER_INTREE_ID
+import com.datnht.circleapp.`object`.BaseObject3D.Companion.ITEM_SANTA_ID
+import com.datnht.circleapp.`object`.BaseObject3D.Companion.ITEM_SNOWMAN_INTREE_ID
+import com.datnht.circleapp.`object`.BaseObject3D.Companion.ITEM_SNOWMAN_LEFT_ID
+import com.datnht.circleapp.`object`.BaseObject3D.Companion.ITEM_SNOWMAN_RIGHT_ID
 import org.rajawali3d.view.SurfaceView
 
 class FirePushView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) :
@@ -33,13 +43,12 @@ class FirePushView @JvmOverloads constructor(context: Context, attrs: AttributeS
                         xMax = xMax,
                         sizeCoeff = sizeCoeff,
                         floatingTimeCoeff = timeCoeff,
-                        displayMetrics = resources.displayMetrics
+                        displayMetrics = resources.displayMetrics,
+                        resource = resources
                     )
                 )
-
                 recycle()
             }
-
 
             setFrameRate(60.0)
             setZOrderOnTop(true)
@@ -62,41 +71,30 @@ class FirePushView @JvmOverloads constructor(context: Context, attrs: AttributeS
     @JvmOverloads
     fun playAnimation(id: Int, startPoint: ArrayList<Float>, endPoint: ArrayList<Float>,
                       flyEndCallBack: FirePushRender.EndFlyAnimation? = null, itemType: ItemType) {
-        val model = Model(
-            id,                         // Unique ID of this image, used for Rajawali materials caching
-            BitmapFactory.decodeResource(
-                resources,
-                if (itemType == ItemType.LEFT_PLANE) R.drawable.plane_from_left else R.drawable.plane
-            )
-        )
-
-        val height =
-            (model.bitmap.height.toFloat() / (model.bitmap.width.toFloat() / HEART_WIDTH.toFloat())).toInt()
-        val resultBitmap = Bitmap.createScaledBitmap(model.bitmap, HEART_WIDTH, height, true)
+//        val height =
+//            (model.bitmap.height.toFloat() / (model.bitmap.width.toFloat() / HEART_WIDTH.toFloat())).toInt()
+//        val resultBitmap = Bitmap.createScaledBitmap(model.bitmap, HEART_WIDTH, height, true)
 
         renderer.emitItem(
-            resultBitmap,
-            itemType,
             HEART_WIDTH,
             height,
-            model.id,
             MAX_Y_FULL,
-            startPoint,
-            endPoint,
             flyEndCallBack
         )
     }
 
+    fun setOnCatchItemListener(onCatchItemListener: FirePushRender.OnCatchItemListener) {
+        renderer?.onCatchItemListener = onCatchItemListener
+    }
+
     override fun onTouchEvent(event: MotionEvent): Boolean {
         renderer.onTouchEvent(event)
-        return false
+        return super.onTouchEvent(event)
     }
 
     private fun getConfig() = renderer.getConfig()
 
     private fun applyConfig(config: FirePushRender.Config) = renderer.applyConfig(config)
-
-    data class Model(val id: Int, val bitmap: Bitmap, val intervalEmit: Int = 300)
 
     companion object {
 
