@@ -1,6 +1,5 @@
 package com.datnht.circleapp
 
-import android.animation.AnimatorSet
 import android.content.Context
 import android.content.res.Resources
 import android.graphics.Bitmap
@@ -10,8 +9,6 @@ import android.util.DisplayMetrics
 import android.util.Log
 import android.util.SparseArray
 import android.view.MotionEvent
-import android.view.animation.AnimationSet
-import android.view.animation.OvershootInterpolator
 import androidx.core.content.ContextCompat
 import com.datnht.circleapp.`object`.*
 import org.rajawali3d.Object3D
@@ -56,20 +53,14 @@ class FirePushRender constructor(context: Context) : Renderer(context), OnObject
     )
     private val matMap = HashMap<Int, Material>()
     private val objectMap = HashMap<Int, BaseObject3D>()
-    var onCatchItemListener: OnCatchItemListener? = null
+    var onRenderListener: OnRenderListener? = null
 
     init {
         mContext = context
         frameRate = 60.0
     }
 
-
-    fun emitItem(
-        width: Int,
-        height: Int,
-        yMax: Float,
-        flyEndCallBack: EndFlyAnimation? = null
-    ) {
+    fun emitItem() {
 
 //        val w = config.sizeCoeff
 //
@@ -170,8 +161,8 @@ class FirePushRender constructor(context: Context) : Renderer(context), OnObject
                      transformable3D = pointSprite
                  })*/
             currentScene.registerAnimation(this)
-
-        }.play()
+            play()
+        }
     }
 
     /**
@@ -322,7 +313,8 @@ class FirePushRender constructor(context: Context) : Renderer(context), OnObject
             mat.textureList[0].influence = 1f
             matMap[it] = mat
         }
-        addTreeItem()
+//        addTreeItem()
+        onRenderListener?.onInitSenceSuccess()
     }
 
     override fun onOffsetsChanged(
@@ -413,8 +405,9 @@ class FirePushRender constructor(context: Context) : Renderer(context), OnObject
         fun onEndFly()
     }
 
-    interface OnCatchItemListener {
+    interface OnRenderListener {
         fun onCatch(itemType: ItemType)
+        fun onInitSenceSuccess()
     }
 
     override fun onNoObjectPicked() {
@@ -423,8 +416,8 @@ class FirePushRender constructor(context: Context) : Renderer(context), OnObject
     override fun onObjectPicked(`object`: Object3D) {
         mSelectedObject = `object`
         mPicker?.unregisterObject(`object`)
-        currentScene.removeChild(`object`)
-        onCatchItemListener?.onCatch(convertNameToItemType(`object`.name))
+        currentScene.clearChildren()
+        onRenderListener?.onCatch(convertNameToItemType(`object`.name))
     }
 
     fun convertNameToItemType(name: String) = when(name) {

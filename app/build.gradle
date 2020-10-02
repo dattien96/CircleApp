@@ -35,4 +35,5 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
     implementation "org.rajawali3d:rajawali:1.1.970@aar"
+    implementation 'nl.dionsegijn:konfetti:1.2.5'
 }

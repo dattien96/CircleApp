@@ -1,16 +1,20 @@
 package com.datnht.circleapp
 
-import android.graphics.Point
+import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
-import android.widget.Toast
+import android.util.DisplayMetrics
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.datnht.circleapp.`object`.BaseObject3D.Companion.ITEM_PLANE_LEFT_ID
-import com.datnht.circleapp.`object`.BaseObject3D.Companion.ITEM_PLANE_RIGHT_ID
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.layout_congratulation.view.*
+import nl.dionsegijn.konfetti.models.Shape
+import nl.dionsegijn.konfetti.models.Size
 
 
-class MainActivity : AppCompatActivity(), FirePushRender.OnCatchItemListener {
+class MainActivity : AppCompatActivity(), FirePushRender.OnRenderListener {
+
+    private var currentItemSelectedType: ItemType? = null
 
     /**
      * Get main thread for update ui
@@ -26,13 +30,12 @@ class MainActivity : AppCompatActivity(), FirePushRender.OnCatchItemListener {
      */
     private val localFreeBoostRunner: Runnable by lazy {
         Runnable {
-            emitPlane2Animation();
         }
     }
 
     private val catchItemRunner: Runnable by lazy {
         Runnable {
-            Toast.makeText(this@MainActivity, "catch ", Toast.LENGTH_SHORT).show()
+            showSuccessView()
         }
     }
 
@@ -51,54 +54,56 @@ class MainActivity : AppCompatActivity(), FirePushRender.OnCatchItemListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        btn_fire?.setOnClickListener {
-            emitPlane1Animation();
-        }
         fire_push_view?.setOnCatchItemListener(this)
+        layout_success?.btn_play_again?.setOnClickListener {
+            layout_success?.visibility = View.GONE
+            emitPlane1Animation()
+        }
+
     }
 
     fun clearView() {
         fire_push_view?.clearView();
     }
 
-    fun emitPlane1Animation() {
-        val display = windowManager.defaultDisplay
-        val size = Point()
-        display.getSize(size)
-        val width: Int = size.x
-        val height: Int = size.y
-
+    private fun emitPlane1Animation() {
         fire_push_view?.playAnimation(
-            ITEM_PLANE_LEFT_ID,
-            arrayListOf(width.toFloat() + 200f, 300f),
-            arrayListOf(
-                -100f, 1500f
-            ),
-            flyEndAnimation,
-            itemType = ItemType.RIGHT_PLANE
-        )
-    }
-
-    fun emitPlane2Animation() {
-        val display = windowManager.defaultDisplay
-        val size = Point()
-        display.getSize(size)
-        val width: Int = size.x
-        val height: Int = size.y
-
-        fire_push_view?.playAnimation(
-            ITEM_PLANE_RIGHT_ID,
-            arrayListOf(-100f, 300f),
-            arrayListOf(
-                width.toFloat() + 200f, 1500f
-            ),
-            itemType = ItemType.LEFT_PLANE
+            flyEndAnimation
         )
     }
 
     override fun onCatch(itemType: ItemType) {
+        currentItemSelectedType = itemType
         mainHandler?.run {
             post(catchItemRunner)
         }
+    }
+
+    override fun onInitSenceSuccess() {
+        emitPlane1Animation()
+    }
+
+    private fun showSuccessView() {
+        val metrics = DisplayMetrics()
+        windowManager.defaultDisplay.getMetrics(metrics)
+
+        val height = metrics.heightPixels
+        val width = metrics.widthPixels
+        layout_success?.visibility = View.VISIBLE
+        var builder = layout_success.viewKonfetti.build()
+            .addColors(Color.YELLOW, Color.GREEN, Color.MAGENTA, Color.BLUE, Color.WHITE)
+            .setDirection(0.0, 359.0)
+            .setSpeed(5f, 10f)
+            .setFadeOutEnabled(true)
+            .setTimeToLive(5000L)
+            .addShapes(Shape.Square)
+            .addSizes(Size(8), Size(12, 6f))
+            .setPosition(
+                width / 2f,
+                height / 2f + 100f
+            )
+
+        builder.burst(400)
+        builder.streamFor(200, 3000L)
     }
 }

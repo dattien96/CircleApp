@@ -2,21 +2,9 @@ package com.datnht.circleapp
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.graphics.PixelFormat
 import android.util.AttributeSet
-import android.util.DisplayMetrics
 import android.view.MotionEvent
-import com.datnht.circleapp.`object`.*
-import com.datnht.circleapp.`object`.BaseObject3D.Companion.ITEM_PLANE_LEFT_ID
-import com.datnht.circleapp.`object`.BaseObject3D.Companion.ITEM_PLANE_RIGHT_ID
-import com.datnht.circleapp.`object`.BaseObject3D.Companion.ITEM_REINDEER_ID
-import com.datnht.circleapp.`object`.BaseObject3D.Companion.ITEM_REINDEER_INTREE_ID
-import com.datnht.circleapp.`object`.BaseObject3D.Companion.ITEM_SANTA_ID
-import com.datnht.circleapp.`object`.BaseObject3D.Companion.ITEM_SNOWMAN_INTREE_ID
-import com.datnht.circleapp.`object`.BaseObject3D.Companion.ITEM_SNOWMAN_LEFT_ID
-import com.datnht.circleapp.`object`.BaseObject3D.Companion.ITEM_SNOWMAN_RIGHT_ID
 import org.rajawali3d.view.SurfaceView
 
 class FirePushView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) :
@@ -69,22 +57,16 @@ class FirePushView @JvmOverloads constructor(context: Context, attrs: AttributeS
     @SuppressLint("CheckResult")
     @Synchronized
     @JvmOverloads
-    fun playAnimation(id: Int, startPoint: ArrayList<Float>, endPoint: ArrayList<Float>,
-                      flyEndCallBack: FirePushRender.EndFlyAnimation? = null, itemType: ItemType) {
+    fun playAnimation(flyEndCallBack: FirePushRender.EndFlyAnimation? = null) {
 //        val height =
 //            (model.bitmap.height.toFloat() / (model.bitmap.width.toFloat() / HEART_WIDTH.toFloat())).toInt()
 //        val resultBitmap = Bitmap.createScaledBitmap(model.bitmap, HEART_WIDTH, height, true)
 
-        renderer.emitItem(
-            HEART_WIDTH,
-            height,
-            MAX_Y_FULL,
-            flyEndCallBack
-        )
+        renderer.emitItem()
     }
 
-    fun setOnCatchItemListener(onCatchItemListener: FirePushRender.OnCatchItemListener) {
-        renderer?.onCatchItemListener = onCatchItemListener
+    fun setOnCatchItemListener(onRenderListener: FirePushRender.OnRenderListener) {
+        renderer?.onRenderListener = onRenderListener
     }
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
