@@ -4,10 +4,10 @@ import android.util.DisplayMetrics
 import com.datnht.circleapp.R
 import com.datnht.circleapp.`object`.type.ItemType
 
-class ReindeerInTree constructor(private val displayMetrics: DisplayMetrics) : BaseObject3D() {
+class BirdInTree constructor(private val displayMetrics: DisplayMetrics) : BaseObject3D() {
 
     override val objectId: Int
-        get() = ITEM_REINDEER_INTREE_ID
+        get() = ITEM_BIRD_INTREE_ID
 
     override val startPoint: ArrayList<Float>
         get() = arrayListOf(displayMetrics.widthPixels / 3f, displayMetrics.heightPixels * 6f / 10f
@@ -17,11 +17,12 @@ class ReindeerInTree constructor(private val displayMetrics: DisplayMetrics) : B
         get() = arrayListOf(displayMetrics.widthPixels / 3f, displayMetrics.heightPixels * 6f / 10f
         )
 
+
     override val itemType: ItemType
-        get() = ItemType.REINDEER_IN_TREE
+        get() = ItemType.BIRD_INTREE
 
     override val bitMapRes: Int
-        get() = R.drawable.reindeer
+        get() = R.drawable.bird
 
     override fun isLeftRightAnimation() = false
 }

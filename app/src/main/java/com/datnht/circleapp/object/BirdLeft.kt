@@ -3,23 +3,22 @@ package com.datnht.circleapp.`object`
 import android.util.DisplayMetrics
 import com.datnht.circleapp.R
 import com.datnht.circleapp.`object`.type.ItemType
-
-class SnowManLeft constructor(private val displayMetrics: DisplayMetrics) : BaseObject3D() {
+class BirdLeft constructor(private val displayMetrics: DisplayMetrics) : BaseObject3D() {
 
     override val objectId: Int
-        get() = ITEM_SNOWMAN_LEFT_ID
+        get() = ITEM_BIRD_LEFT_ID
 
     override val startPoint: ArrayList<Float>
-        get() = arrayListOf(0f, displayMetrics.heightPixels / 2f)
+        get() = arrayListOf(0f, displayMetrics.heightPixels / 3f)
 
     override val endPoint: ArrayList<Float>
-        get() = arrayListOf(0f, displayMetrics.heightPixels / 2f)
+        get() = arrayListOf(0f, displayMetrics.heightPixels / 3f)
 
     override val itemType: ItemType
-        get() = ItemType.SNOWMAN_LEFT
+        get() = ItemType.BIRD_LEFT
 
     override val bitMapRes: Int
-        get() = R.drawable.snowman
+        get() = R.drawable.bird
 
     override fun getRotateX(): Double = 30.0
 

@@ -1,0 +1,6 @@
+package com.datnht.circleapp.`object`.type
+
+enum class ItemType {
+    LEFT_PLANE, RIGHT_PLANE, SANTA, TREE, REINDEER, REINDEER_IN_TREE,
+    SNOWMAN_LEFT, SNOWMAN_RIGHT, SNOWMAN_INTREE, BIRD_LEFT, BIRD_RIGHT, BIRD_INTREE, PLAY_TITLE
+}

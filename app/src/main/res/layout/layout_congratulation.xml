@@ -90,7 +90,7 @@
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:layout_marginTop="24dp"
-        android:src="@drawable/girf_success"
+        android:src="@drawable/ic_gift"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btn_play_again" />

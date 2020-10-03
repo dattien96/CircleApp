@@ -27,7 +27,7 @@ public class SnowView extends View {
 
     protected void resize(int width, int height) {
         Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        paint.setColor(Color.WHITE);
+        paint.setColor(Color.parseColor("#A3ffffff"));
         paint.setStyle(Paint.Style.FILL);
         snowflakes = new SnowFlake[NUM_SNOWFLAKES];
         for (int i = 0; i < NUM_SNOWFLAKES; i++) {

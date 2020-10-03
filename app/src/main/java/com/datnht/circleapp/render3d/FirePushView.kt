@@ -1,10 +1,11 @@
-package com.datnht.circleapp
+package com.datnht.circleapp.render3d
 
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.PixelFormat
 import android.util.AttributeSet
 import android.view.MotionEvent
+import com.datnht.circleapp.R
 import org.rajawali3d.view.SurfaceView
 
 class FirePushView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) :
@@ -14,7 +15,9 @@ class FirePushView @JvmOverloads constructor(context: Context, attrs: AttributeS
 
     init {
         attrs?.also {
-            context.obtainStyledAttributes(it, R.styleable.FirePushView).apply {
+            context.obtainStyledAttributes(it,
+                R.styleable.FirePushView
+            ).apply {
                 val xMax =
                     getFloat(R.styleable.FirePushView_x_max, FirePushRender.DEFAULT_CONFIG.xMax)
                 val sizeCoeff = getFloat(
