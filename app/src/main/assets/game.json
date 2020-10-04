@@ -1,0 +1,189 @@
+[
+  {
+    "items": [
+      {
+        "letfTopCoor": [
+          190.96436,
+          644.95825
+        ],
+        "rightBotCoor": [
+          913.95264,
+          1407.9478
+        ],
+        "type": "SANTA"
+      }
+    ],
+    "msecondEnd": 500,
+    "msecondStart": 0
+  },
+  {
+    "items": [
+      {
+        "letfTopCoor": [
+          216.969,
+          633.91516
+        ],
+        "rightBotCoor": [
+          850.968,
+          1344.9412
+        ],
+        "type": "SNOW_MAN"
+      }
+    ],
+    "msecondEnd": 1000,
+    "msecondStart": 500
+  },
+  {
+    "items": [
+      {
+        "letfTopCoor": [
+          187.96509,
+          553.9713
+        ],
+        "rightBotCoor": [
+          893.94653,
+          1475.9
+        ],
+        "type": "SNOW_MAN"
+      }
+    ],
+    "msecondEnd": 1500,
+    "msecondStart": 1000
+  },
+  {
+    "items": [
+      {
+        "letfTopCoor": [
+          187.96509,
+          638.9286
+        ],
+        "rightBotCoor": [
+          779.97437,
+          1367.9081
+        ],
+        "type": "BIRD"
+      }
+    ],
+    "msecondEnd": 2000,
+    "msecondStart": 1500
+  },
+  {
+    "items": [
+      {
+        "letfTopCoor": [
+          179.98901,
+          621.9236
+        ],
+        "rightBotCoor": [
+          881.94946,
+          1484.9106
+        ],
+        "type": "BIRD"
+      }
+    ],
+    "msecondEnd": 2500,
+    "msecondStart": 2000
+  },
+  {
+    "items": [
+      {
+        "letfTopCoor": [
+          156.98364,
+          575.922
+        ],
+        "rightBotCoor": [
+          907.9541,
+          1384.9131
+        ],
+        "type": "REINDEER"
+      }
+    ],
+    "msecondEnd": 3000,
+    "msecondStart": 2500
+  },
+  {
+    "items": [
+      {
+        "letfTopCoor": [
+          93.966064,
+          661.96326
+        ],
+        "rightBotCoor": [
+          930.9595,
+          1555.9116
+        ],
+        "type": "REINDEER"
+      }
+    ],
+    "msecondEnd": 3500,
+    "msecondStart": 3000
+  },
+  {
+    "items": [
+      {
+        "letfTopCoor": [
+          159.98291,
+          578.9707
+        ],
+        "rightBotCoor": [
+          841.9702,
+          1390.9427
+        ],
+        "type": "PLANE"
+      }
+    ],
+    "msecondEnd": 4000,
+    "msecondStart": 3500
+  },
+  {
+    "items": [
+      {
+        "letfTopCoor": [
+          187.96509,
+          635.94763
+        ],
+        "rightBotCoor": [
+          847.96875,
+          1367.9081
+        ],
+        "type": "PLANE"
+      }
+    ],
+    "msecondEnd": 4500,
+    "msecondStart": 4000
+  },
+  {
+    "items": [
+      {
+        "letfTopCoor": [
+          204.97192,
+          601.9376
+        ],
+        "rightBotCoor": [
+          893.94653,
+          1281.9346
+        ],
+        "type": "SANTA"
+      }
+    ],
+    "msecondEnd": 5000,
+    "msecondStart": 4500
+  },
+  {
+    "items": [
+      {
+        "letfTopCoor": [
+          133.97827,
+          538.931
+        ],
+        "rightBotCoor": [
+          810.9558,
+          1478.9487
+        ],
+        "type": "SANTA"
+      }
+    ],
+    "msecondEnd": 5500,
+    "msecondStart": 5000
+  }
+]

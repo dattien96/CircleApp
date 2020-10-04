@@ -1,6 +1,7 @@
 package com.datnht.circleapp.`object`.type
 
 import com.datnht.circleapp.`object`.BaseObject3D
+import com.datnht.circleapp.newsource.GameCoordinate
 
 object AppMaterialIdLocator {
     val objectIDs = mutableListOf(
@@ -53,4 +54,6 @@ object AppMaterialIdLocator {
         BaseObject3D.ITEM_REINDEER_ID,
         BaseObject3D.ITEM_BIRD_INTREE_ID,
     )
+
+    val root = mutableListOf<GameCoordinate>()
 }

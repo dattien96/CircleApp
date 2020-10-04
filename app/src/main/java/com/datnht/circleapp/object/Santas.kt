@@ -27,7 +27,7 @@ class Santas constructor(private val displayMetrics: DisplayMetrics) : BaseObjec
         get() = ItemType.SANTA
 
     override val bitMapRes: Int
-        get() = R.drawable.santa
+        get() = R.drawable.ic_santa
 
     override fun getAnimation(
         pointSprite: Object3D, onAnimationEnd: () -> Unit,
@@ -55,13 +55,13 @@ class Santas constructor(private val displayMetrics: DisplayMetrics) : BaseObjec
                 }
             })
         })
-        val axis = Vector3(0.0, 0.0, 4.0)
+        val axis = Vector3(1.0, 0.0, 4.0)
         axis.normalize()
         addAnimation(RotateOnAxisAnimation(axis, 30.0).apply {
-            durationMilliseconds = 100
+            durationMilliseconds = 500
             transformable3D = pointSprite
-            repeatMode = Animation.RepeatMode.REVERSE
-            setRepeatCount(4)
+            repeatMode = Animation.RepeatMode.REVERSE_INFINITE
+//            setRepeatCount(4)
             interpolator = AccelerateInterpolator()
         })
         addAnimation(AnimationGroup().apply {

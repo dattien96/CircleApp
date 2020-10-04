@@ -8,7 +8,7 @@ import android.util.SparseArray
 import android.view.MotionEvent
 import com.datnht.circleapp.`object`.type.AppMaterialIdLocator.objectIDs
 import com.datnht.circleapp.`object`.type.AppMaterialIdLocator.objectIDsWithTree
-import com.datnht.circleapp.MainActivity
+import com.datnht.circleapp.newsource.MainActivity
 import com.datnht.circleapp.`object`.*
 import com.datnht.circleapp.`object`.type.ItemType
 import org.rajawali3d.Object3D
@@ -276,9 +276,9 @@ class FirePushRender constructor(context: Context) : Renderer(context), OnObject
         }
     }
 
-    private fun getPointSprite(id: Int): Object3D {
+     private fun getPointSprite(id: Int): Object3D {
 
-        val pointSprite = Plane(0.7f,0.7f,1,1).apply {
+        val pointSprite = Plane(0.5f, 1f, 1,1).apply {
             material = matMap[id]
             isTransparent = false
             this.name = getBaseItemObject(id).itemType.name

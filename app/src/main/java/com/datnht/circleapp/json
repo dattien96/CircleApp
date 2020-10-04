@@ -1,0 +1,23 @@
+TYPE:
+0: santa
+1: SnowMan
+2: Bird
+3: Reindeer
+4. Plane
+
+{
+    second: 1123,
+    item: [
+    {
+    type: 1,
+    A: {}
+    B: {}
+    C: {}
+    D: {}
+    },
+    {
+    type: 2,
+
+    }
+    ]
+}
