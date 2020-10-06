@@ -2,23 +2,56 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".newsource.MainActivity">
 
-    <com.google.android.exoplayer2.ui.PlayerView
-        android:id="@+id/video_view"
+    <FrameLayout
+        android:id="@+id/video_container"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:bar_height="2dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:played_color="@color/colorAccent"
-        app:scrubber_color="@color/colorAccent"
-        app:use_sensor_rotation="true" />
+        android:layout_height="match_parent">
+        <com.google.android.exoplayer2.ui.PlayerView
+            android:id="@+id/intro_video_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:bar_height="2dp" />
+
+        <com.google.android.exoplayer2.ui.PlayerView
+            android:id="@+id/game_video_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="invisible" />
+
+        <com.google.android.exoplayer2.ui.PlayerView
+            android:id="@+id/santa_video_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="invisible"/>
+
+        <com.google.android.exoplayer2.ui.PlayerView
+            android:id="@+id/bird_video_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="invisible" />
+
+        <com.google.android.exoplayer2.ui.PlayerView
+            android:id="@+id/snow_video_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="invisible" />
+
+        <com.google.android.exoplayer2.ui.PlayerView
+            android:id="@+id/reindeer_video_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="invisible" />
+
+        <com.google.android.exoplayer2.ui.PlayerView
+            android:id="@+id/plane_video_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="invisible" />
+    </FrameLayout>
 
     <View
         android:id="@+id/touch_view"
@@ -33,4 +66,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     </androidx.fragment.app.FragmentContainerView>
+
+    <FrameLayout
+        android:id="@+id/loading_container"
+        android:background="@android:color/white"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ProgressBar
+            android:layout_gravity="center"
+            android:layout_width="48dp"
+            android:layout_height="48dp"/>
+    </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

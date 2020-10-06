@@ -1,0 +1,27 @@
+{
+  "items": [
+    {
+      "letfTopCoor": [
+        227.9773,
+        736.9614
+      ],
+      "rightBotCoor": [
+        838.97095,
+        840.9562
+      ],
+      "type": "PLAY_AGAIN"
+    },
+    {
+      "letfTopCoor": [
+        242.97363,
+        581.95166
+      ],
+      "rightBotCoor": [
+        844.9695,
+        703.96765
+      ],
+      "type": "CHANGE_GIFT"
+    }
+  ],
+  "msecondStart": 3500
+}

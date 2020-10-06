@@ -3,14 +3,36 @@
     "items": [
       {
         "letfTopCoor": [
-          190.96436,
-          644.95825
+          229.9878,
+          559.9332
         ],
         "rightBotCoor": [
-          913.95264,
-          1407.9478
+          530.96924,
+          961.95593
         ],
         "type": "SANTA"
+      },
+      {
+        "letfTopCoor": [
+          929.9707,
+          883.90906
+        ],
+        "rightBotCoor": [
+          1062.9602,
+          1090.9501
+        ],
+        "type": "SNOW_MAN"
+      },
+      {
+        "letfTopCoor": [
+          237.96387,
+          1277.9374
+        ],
+        "rightBotCoor": [
+          460.96436,
+          1676.9114
+        ],
+        "type": "REINDEER"
       }
     ],
     "msecondEnd": 500,
@@ -20,14 +42,36 @@
     "items": [
       {
         "letfTopCoor": [
-          216.969,
-          633.91516
+          237.96387,
+          559.9332
         ],
         "rightBotCoor": [
-          850.968,
-          1344.9412
+          515.9729,
+          942.91846
+        ],
+        "type": "SANTA"
+      },
+      {
+        "letfTopCoor": [
+          941.9678,
+          864.93933
+        ],
+        "rightBotCoor": [
+          1058.9392,
+          1090.9501
         ],
         "type": "SNOW_MAN"
+      },
+      {
+        "letfTopCoor": [
+          249.96094,
+          1266.8943
+        ],
+        "rightBotCoor": [
+          464.98535,
+          1676.9114
+        ],
+        "type": "REINDEER"
       }
     ],
     "msecondEnd": 1000,
@@ -37,14 +81,36 @@
     "items": [
       {
         "letfTopCoor": [
-          187.96509,
-          553.9713
+          245.9729,
+          540.9635
         ],
         "rightBotCoor": [
-          893.94653,
-          1475.9
+          507.96387,
+          942.91846
+        ],
+        "type": "SANTA"
+      },
+      {
+        "letfTopCoor": [
+          945.9558,
+          875.9147
+        ],
+        "rightBotCoor": [
+          1070.9363,
+          1090.9501
         ],
         "type": "SNOW_MAN"
+      },
+      {
+        "letfTopCoor": [
+          257.96997,
+          1262.8971
+        ],
+        "rightBotCoor": [
+          468.9734,
+          1687.8867
+        ],
+        "type": "REINDEER"
       }
     ],
     "msecondEnd": 1500,
@@ -54,14 +120,36 @@
     "items": [
       {
         "letfTopCoor": [
-          187.96509,
-          638.9286
+          241.98486,
+          552.9551
         ],
         "rightBotCoor": [
-          779.97437,
-          1367.9081
+          538.9783,
+          954.91003
         ],
-        "type": "BIRD"
+        "type": "SANTA"
+      },
+      {
+        "letfTopCoor": [
+          925.9497,
+          879.91187
+        ],
+        "rightBotCoor": [
+          1050.9631,
+          1094.9473
+        ],
+        "type": "SNOW_MAN"
+      },
+      {
+        "letfTopCoor": [
+          265.979,
+          1262.8971
+        ],
+        "rightBotCoor": [
+          448.9673,
+          1668.917
+        ],
+        "type": "REINDEER"
       }
     ],
     "msecondEnd": 2000,
@@ -71,14 +159,25 @@
     "items": [
       {
         "letfTopCoor": [
-          179.98901,
-          621.9236
+          292.9724,
+          516.98035
         ],
         "rightBotCoor": [
-          881.94946,
-          1484.9106
+          640.95337,
+          907.95996
         ],
-        "type": "BIRD"
+        "type": "SANTA"
+      },
+      {
+        "letfTopCoor": [
+          198.97339,
+          1266.8943
+        ],
+        "rightBotCoor": [
+          409.9768,
+          1640.9366
+        ],
+        "type": "REINDEER"
       }
     ],
     "msecondEnd": 2500,
@@ -88,14 +187,47 @@
     "items": [
       {
         "letfTopCoor": [
-          156.98364,
-          575.922
+          202.96143,
+          524.97473
         ],
         "rightBotCoor": [
-          907.9541,
-          1384.9131
+          405.9558,
+          813.9243
+        ],
+        "type": "SANTA"
+      },
+      {
+        "letfTopCoor": [
+          800.96924,
+          790.9574
+        ],
+        "rightBotCoor": [
+          1054.9512,
+          1125.9086
+        ],
+        "type": "SNOW_MAN"
+      },
+      {
+        "letfTopCoor": [
+          233.97583,
+          1266.8943
+        ],
+        "rightBotCoor": [
+          397.97974,
+          1648.931
         ],
         "type": "REINDEER"
+      },
+      {
+        "letfTopCoor": [
+          511.9519,
+          1594.935
+        ],
+        "rightBotCoor": [
+          675.9558,
+          1765.9336
+        ],
+        "type": "BIRD"
       }
     ],
     "msecondEnd": 3000,
@@ -105,14 +237,25 @@
     "items": [
       {
         "letfTopCoor": [
-          93.966064,
-          661.96326
+          835.9717,
+          868.9365
         ],
         "rightBotCoor": [
-          930.9595,
-          1555.9116
+          1058.9392,
+          1145.9623
         ],
-        "type": "REINDEER"
+        "type": "SNOW_MAN"
+      },
+      {
+        "letfTopCoor": [
+          855.9448,
+          1496.9022
+        ],
+        "rightBotCoor": [
+          1054.9512,
+          1902.9221
+        ],
+        "type": "BIRD"
       }
     ],
     "msecondEnd": 3500,
@@ -122,12 +265,12 @@
     "items": [
       {
         "letfTopCoor": [
-          159.98291,
-          578.9707
+          218.97949,
+          817.9215
         ],
         "rightBotCoor": [
-          841.9702,
-          1390.9427
+          722.9553,
+          1215.947
         ],
         "type": "PLANE"
       }
@@ -139,12 +282,12 @@
     "items": [
       {
         "letfTopCoor": [
-          187.96509,
-          635.94763
+          7.976074,
+          875.9147
         ],
         "rightBotCoor": [
-          847.96875,
-          1367.9081
+          226.98853,
+          1238.914
         ],
         "type": "PLANE"
       }
@@ -156,14 +299,14 @@
     "items": [
       {
         "letfTopCoor": [
-          204.97192,
-          601.9376
+          300.98145,
+          653.9689
         ],
         "rightBotCoor": [
-          893.94653,
-          1281.9346
+          827.96265,
+          1082.9557
         ],
-        "type": "SANTA"
+        "type": "PLANE"
       }
     ],
     "msecondEnd": 5000,
@@ -173,17 +316,650 @@
     "items": [
       {
         "letfTopCoor": [
-          133.97827,
-          538.931
+          921.9617,
+          868.9365
         ],
         "rightBotCoor": [
-          810.9558,
-          1478.9487
+          1054.9512,
+          1246.9083
         ],
-        "type": "SANTA"
+        "type": "PLANE"
+      },
+      {
+        "letfTopCoor": [
+          362.9773,
+          1398.9371
+        ],
+        "rightBotCoor": [
+          640.95337,
+          1695.8811
+        ],
+        "type": "REINDEER"
       }
     ],
     "msecondEnd": 5500,
     "msecondStart": 5000
+  },
+  {
+    "items": [
+      {
+        "letfTopCoor": [
+          718.9673,
+          1445.8872
+        ],
+        "rightBotCoor": [
+          1046.9421,
+          1843.9127
+        ],
+        "type": "REINDEER"
+      }
+    ],
+    "msecondEnd": 6000,
+    "msecondStart": 5500
+  },
+  {
+    "items": [
+      {
+        "letfTopCoor": [
+          245.9729,
+          1254.9027
+        ],
+        "rightBotCoor": [
+          464.98535,
+          1695.8811
+        ],
+        "type": "SNOW_MAN"
+      },
+      {
+        "letfTopCoor": [
+          304.96948,
+          770.97144
+        ],
+        "rightBotCoor": [
+          839.9597,
+          1211.9498
+        ],
+        "type": "PLANE"
+      }
+    ],
+    "msecondEnd": 6500,
+    "msecondStart": 6000
+  },
+  {
+    "items": [
+      {
+        "letfTopCoor": [
+          14.996338,
+          922.9325
+        ],
+        "rightBotCoor": [
+          202.96143,
+          1192.9124
+        ],
+        "type": "PLANE"
+      },
+      {
+        "letfTopCoor": [
+          77.98096,
+          1231.9358
+        ],
+        "rightBotCoor": [
+          390.95947,
+          1570.8842
+        ],
+        "type": "SNOW_MAN"
+      }
+    ],
+    "msecondEnd": 7000,
+    "msecondStart": 6500
+  },
+  {
+    "items": [
+      {
+        "letfTopCoor": [
+          124.98047,
+          1242.9111
+        ],
+        "rightBotCoor": [
+          382.9834,
+          1582.9435
+        ],
+        "type": "SNOW_MAN"
+      }
+    ],
+    "msecondEnd": 7500,
+    "msecondStart": 7000
+  },
+  {
+    "items": [
+      {
+        "letfTopCoor": [
+          214.99146,
+          1406.9315
+        ],
+        "rightBotCoor": [
+          374.97437,
+          1597.916
+        ],
+        "type": "SNOW_MAN"
+      }
+    ],
+    "msecondEnd": 8000,
+    "msecondStart": 7500
+  },
+  {
+    "items": [
+      {
+        "letfTopCoor": [
+          265.979,
+          610.94824
+        ],
+        "rightBotCoor": [
+          831.9507,
+          1039.935
+        ],
+        "type": "PLANE"
+      }
+    ],
+    "msecondEnd": 8500,
+    "msecondStart": 8000
+  },
+  {
+    "items": [
+      {
+        "letfTopCoor": [
+          851.9568,
+          794.9546
+        ],
+        "rightBotCoor": [
+          1058.9392,
+          1231.9358
+        ],
+        "type": "PLANE"
+      }
+    ],
+    "msecondEnd": 9000,
+    "msecondStart": 8500
+  },
+  {
+    "items": [
+      {
+        "letfTopCoor": [
+          202.96143,
+          1270.8915
+        ],
+        "rightBotCoor": [
+          460.96436,
+          1676.9114
+        ],
+        "type": "SNOW_MAN"
+      }
+    ],
+    "msecondEnd": 9500,
+    "msecondStart": 9000
+  },
+  {
+    "items": [
+      {
+        "letfTopCoor": [
+          226.98853,
+          1274.9564
+        ],
+        "rightBotCoor": [
+          476.98242,
+          1672.9142
+        ],
+        "type": "SNOW_MAN"
+      },
+      {
+        "letfTopCoor": [
+          741.97266,
+          591.9785
+        ],
+        "rightBotCoor": [
+          1050.9631,
+          989.9363
+        ],
+        "type": "PLANE"
+      },
+      {
+        "letfTopCoor": [
+          995.9546,
+          1430.9147
+        ],
+        "rightBotCoor": [
+          1070.9363,
+          1839.9155
+        ],
+        "type": "REINDEER"
+      }
+    ],
+    "msecondEnd": 10000,
+    "msecondStart": 9500
+  },
+  {
+    "items": [
+      {
+        "letfTopCoor": [
+          22.972412,
+          922.9325
+        ],
+        "rightBotCoor": [
+          292.9724,
+          1270.8915
+        ],
+        "type": "PLANE"
+      },
+      {
+        "letfTopCoor": [
+          226.98853,
+          1281.9346
+        ],
+        "rightBotCoor": [
+          444.97925,
+          1656.9254
+        ],
+        "type": "SNOW_MAN"
+      },
+      {
+        "letfTopCoor": [
+          823.9746,
+          1426.9175
+        ],
+        "rightBotCoor": [
+          1074.9573,
+          1929.8862
+        ],
+        "type": "REINDEER"
+      }
+    ],
+    "msecondEnd": 10500,
+    "msecondStart": 10000
+  },
+  {
+    "items": [
+      {
+        "letfTopCoor": [
+          687.9529,
+          1461.9437
+        ],
+        "rightBotCoor": [
+          1035.9668,
+          1921.8918
+        ],
+        "type": "REINDEER"
+      },
+      {
+        "letfTopCoor": [
+          14.996338,
+          719.9564
+        ],
+        "rightBotCoor": [
+          190.96436,
+          1063.9182
+        ],
+        "type": "BIRD"
+      },
+      {
+        "letfTopCoor": [
+          194.98535,
+          1313.9121
+        ],
+        "rightBotCoor": [
+          421.97388,
+          1672.9142
+        ],
+        "type": "SNOW_MAN"
+      }
+    ],
+    "msecondEnd": 11000,
+    "msecondStart": 10500
+  },
+  {
+    "items": [
+      {
+        "letfTopCoor": [
+          515.9729,
+          1512.891
+        ],
+        "rightBotCoor": [
+          835.9717,
+          1875.8903
+        ],
+        "type": "REINDEER"
+      },
+      {
+        "letfTopCoor": [
+          14.996338,
+          727.9508
+        ],
+        "rightBotCoor": [
+          218.97949,
+          1036.9541
+        ],
+        "type": "BIRD"
+      },
+      {
+        "letfTopCoor": [
+          11.99707,
+          251.94617
+        ],
+        "rightBotCoor": [
+          265.979,
+          598.95667
+        ],
+        "type": "PLANE"
+      }
+    ],
+    "msecondEnd": 11500,
+    "msecondStart": 11000
+  },
+  {
+    "items": [
+      {
+        "letfTopCoor": [
+          3.988037,
+          887.90625
+        ],
+        "rightBotCoor": [
+          155.99487,
+          1129.9058
+        ],
+        "type": "BIRD"
+      },
+      {
+        "letfTopCoor": [
+          339.97192,
+          1512.891
+        ],
+        "rightBotCoor": [
+          566.96045,
+          1781.9224
+        ],
+        "type": "REINDEER"
+      },
+      {
+        "letfTopCoor": [
+          827.96265,
+          715.9592
+        ],
+        "rightBotCoor": [
+          1050.9631,
+          1160.9348
+        ],
+        "type": "PLANE"
+      }
+    ],
+    "msecondEnd": 12000,
+    "msecondStart": 11500
+  },
+  {
+    "items": [
+      {
+        "letfTopCoor": [
+          175.96802,
+          1231.9358
+        ],
+        "rightBotCoor": [
+          413.96484,
+          1648.931
+        ],
+        "type": "SNOW_MAN"
+      }
+    ],
+    "msecondEnd": 12500,
+    "msecondStart": 12000
+  },
+  {
+    "items": [
+      {
+        "letfTopCoor": [
+          128.9685,
+          1223.9414
+        ],
+        "rightBotCoor": [
+          409.9768,
+          1613.9048
+        ],
+        "type": "SNOW_MAN"
+      },
+      {
+        "letfTopCoor": [
+          827.96265,
+          696.92175
+        ],
+        "rightBotCoor": [
+          1062.9602,
+          1063.9182
+        ],
+        "type": "BIRD"
+      }
+    ],
+    "msecondEnd": 13000,
+    "msecondStart": 12500
+  },
+  {
+    "items": [
+      {
+        "letfTopCoor": [
+          272.9663,
+          1258.8999
+        ],
+        "rightBotCoor": [
+          530.96924,
+          1703.9432
+        ],
+        "type": "SNOW_MAN"
+      },
+      {
+        "letfTopCoor": [
+          800.96924,
+          715.9592
+        ],
+        "rightBotCoor": [
+          1066.9482,
+          1098.9445
+        ],
+        "type": "BIRD"
+      }
+    ],
+    "msecondEnd": 13500,
+    "msecondStart": 13000
+  },
+  {
+    "items": [
+      {
+        "letfTopCoor": [
+          229.9878,
+          1418.9231
+        ],
+        "rightBotCoor": [
+          358.9563,
+          1633.8907
+        ],
+        "type": "SNOW_MAN"
+      },
+      {
+        "letfTopCoor": [
+          972.9492,
+          840.9562
+        ],
+        "rightBotCoor": [
+          1058.9392,
+          1153.9567
+        ],
+        "type": "BIRD"
+      }
+    ],
+    "msecondEnd": 14000,
+    "msecondStart": 13500
+  },
+  {
+    "items": [
+      {
+        "letfTopCoor": [
+          14.996338,
+          747.93677
+        ],
+        "rightBotCoor": [
+          202.96143,
+          1102.9417
+        ],
+        "type": "BIRD"
+      },
+      {
+        "letfTopCoor": [
+          323.98682,
+          1379.8997
+        ],
+        "rightBotCoor": [
+          515.9729,
+          1625.8964
+        ],
+        "type": "REINDEER"
+      }
+    ],
+    "msecondEnd": 14500,
+    "msecondStart": 14000
+  },
+  {
+    "items": [
+      {
+        "letfTopCoor": [
+          655.9497,
+          1406.9315
+        ],
+        "rightBotCoor": [
+          945.9558,
+          1781.9224
+        ],
+        "type": "REINDEER"
+      },
+      {
+        "letfTopCoor": [
+          198.97339,
+          1250.9055
+        ],
+        "rightBotCoor": [
+          444.97925,
+          1660.9226
+        ],
+        "type": "SNOW_MAN"
+      },
+      {
+        "letfTopCoor": [
+          14.996338,
+          669.95764
+        ],
+        "rightBotCoor": [
+          175.96802,
+          1024.9625
+        ],
+        "type": "BIRD"
+      }
+    ],
+    "msecondEnd": 15000,
+    "msecondStart": 14500
+  },
+  {
+    "items": [
+      {
+        "letfTopCoor": [
+          7.976074,
+          864.93933
+        ],
+        "rightBotCoor": [
+          93.966064,
+          1137.9001
+        ],
+        "type": "BIRD"
+      },
+      {
+        "letfTopCoor": [
+          249.96094,
+          1289.929
+        ],
+        "rightBotCoor": [
+          440.95825,
+          1676.9114
+        ],
+        "type": "SNOW_MAN"
+      },
+      {
+        "letfTopCoor": [
+          886.9592,
+          1488.9078
+        ],
+        "rightBotCoor": [
+          1062.9602,
+          1906.9193
+        ],
+        "type": "REINDEER"
+      }
+    ],
+    "msecondEnd": 15500,
+    "msecondStart": 15000
+  },
+  {
+    "items": [
+      {
+        "letfTopCoor": [
+          308.99048,
+          1235.933
+        ],
+        "rightBotCoor": [
+          526.9812,
+          1715.9348
+        ],
+        "type": "SNOW_MAN"
+      },
+      {
+        "letfTopCoor": [
+          843.94775,
+          700.91895
+        ],
+        "rightBotCoor": [
+          1058.9392,
+          1063.9182
+        ],
+        "type": "BIRD"
+      }
+    ],
+    "msecondEnd": 16000,
+    "msecondStart": 15500
+  },
+  {
+    "items": [
+      {
+        "letfTopCoor": [
+          1054.9512,
+          1094.9473
+        ],
+        "rightBotCoor": [
+          1058.9392,
+          1063.9182
+        ],
+        "type": "BIRD"
+      }
+    ],
+    "msecondEnd": 16500,
+    "msecondStart": 16000
+  },
+  {
+    "items": [
+      {
+        "letfTopCoor": [
+          1062.9602,
+          1078.9585
+        ],
+        "rightBotCoor": [
+          992.9553,
+          747.93677
+        ],
+        "type": "BIRD"
+      }
+    ],
+    "msecondEnd": 17000,
+    "msecondStart": 16500
   }
 ]

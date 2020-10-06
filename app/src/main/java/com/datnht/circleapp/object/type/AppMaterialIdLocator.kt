@@ -2,6 +2,8 @@ package com.datnht.circleapp.`object`.type
 
 import com.datnht.circleapp.`object`.BaseObject3D
 import com.datnht.circleapp.newsource.GameCoordinate
+import com.datnht.circleapp.newsource.StartCoordinate
+import com.datnht.circleapp.newsource.SuccessCoordinate
 
 object AppMaterialIdLocator {
     val objectIDs = mutableListOf(
@@ -56,4 +58,6 @@ object AppMaterialIdLocator {
     )
 
     val root = mutableListOf<GameCoordinate>()
+    val sucessRoot = mutableListOf<SuccessCoordinate>()
+    var startRoot : StartCoordinate? = null
 }
